@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — Warehouse.ninja</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        #site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+            background: #fff;
+            transition: box-shadow 0.3s ease;
+        }
+        #site-header .header-row {
+            min-height: 120px;
+            transition: min-height 0.3s ease;
+        }
+        body.scrolled #site-header {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        body.scrolled #site-header .header-row {
+            min-height: 84px;
+        }
+        #site-header .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1290px;
+            margin: 0 auto;
+            padding: 0 35px;
+            height: 100%;
+            min-height: inherit;
+        }
+        #site-header .site-branding .logo-img {
+            max-width: 250px;
+            height: auto;
+        }
+        #site-header .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        #site-header .header-nav > * {
+            min-width: 0;
+        }
+        #site-header .header-nav > a {
+            color: #28292a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0 12.5px;
+            transition: color 0.2s;
+        }
+        #site-header .header-nav > a:hover {
+            color: #00509d;
+        }
+        .header-nav .dropdown {
+            position: relative;
+        }
+        .header-nav .dropdown > a {
+            color: #28292a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0 12.5px;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .header-nav .dropdown > a:hover {
+            color: #00509d;
+        }
+        .header-nav .dropdown > a .ct-icon {
+            width: 8px;
+            height: 8px;
+        }
+        .header-nav .dropdown .sub-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #003f88;
+            min-width: 100px;
+            border-radius: 0 0 2px 2px;
+            box-shadow: 0 10px 20px rgba(41,51,61,0.1);
+            padding: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.2s ease;
+            z-index: 100;
+            list-style: none;
+        }
+        .header-nav .dropdown:hover .sub-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .header-nav .dropdown:last-of-type .sub-menu {
+            left: auto;
+            right: 0;
+        }
+        .header-nav .dropdown .sub-menu a {
+            display: block;
+            padding: 13px 19.5px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background 0.2s, color 0.2s;
+        }
+        .header-nav .dropdown .sub-menu a:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            #site-header .header-nav { display: none; }
+            .hamburger { display: block; }
+            #site-header .header-container { padding: 0 1rem; }
+        }
+
+        .pricing-hero {
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+        .pricing-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            color: #111;
+        }
+        .pricing-hero .subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0.5rem auto 0;
+        }
+
+        .pricing-table-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+
+        .site-footer {
+            background: #f8f8f8;
+            padding: 3rem 0 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 2rem 1rem;
+        }
+        .footer-nav a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .footer-nav a:hover {
+            color: #00509d;
+        }
+        .footer-bottom {
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            padding: 1.5rem 0;
+            font-size: 0.85rem;
+            color: #999;
+        }
+    </style>
+    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+</head>
+<body>
+    <header id="site-header">
+        <div class="header-row">
+            <div class="header-container">
+                <div class="site-branding">
+                    <a href="https://warehouse.ninja/"><img src="logo.png" alt="Warehouse.ninja" class="logo-img"></a>
+                </div>
+                <button class="hamburger" aria-label="Menu">
+                    <svg width="18" height="14" viewBox="0 0 18 14">
+                        <rect y="0" width="18" height="1.7" rx="1"/><rect y="6.15" width="18" height="1.7" rx="1"/><rect y="12.3" width="18" height="1.7" rx="1"/>
+                    </svg>
+                </button>
+                <nav class="header-nav">
+                    <a href="https://warehouse.ninja/articles/">Blog</a>
+                    <a href="https://warehouse.ninja/shop/">Shop</a>
+                    <a href="https://warehouse.ninja/pricing/">Pricing</a>
+                    <a href="https://warehouse.ninja/pay/">Pay</a>
+                    <div class="dropdown">
+                        <a href="https://warehouse.ninja/locations/">Locations <svg class="ct-icon" width="8" height="8" viewBox="0 0 15 15"><path d="M2.1,3.2l5.4,5.4l5.4-5.4L15,4.3l-7.5,7.5L0,4.3L2.1,3.2z"/></svg></a>
+                        <div class="sub-menu">
+                            <a href="https://warehouse.ninja/locations/amazon/">Amazon</a>
+                            <a href="https://warehouse.ninja/locations/category/fedex/">FedEx</a>
+                            <a href="https://warehouse.ninja/locations/kohls/">Kohl's</a>
+                            <a href="https://warehouse.ninja/locations/target/">Target</a>
+                            <a href="https://warehouse.ninja/locations/unfi/">UNFI</a>
+                            <a href="https://warehouse.ninja/locations/us-foods/">US Foods</a>
+                            <a href="https://warehouse.ninja/locations/walmart/">Walmart</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="https://warehouse.ninja/lists/">Lists <svg class="ct-icon" width="8" height="8" viewBox="0 0 15 15"><path d="M2.1,3.2l5.4,5.4l5.4-5.4L15,4.3l-7.5,7.5L0,4.3L2.1,3.2z"/></svg></a>
+                        <div class="sub-menu">
+                            <a href="https://warehouse.ninja/lists/delivery/">Delivery companies</a>
+                            <a href="https://warehouse.ninja/lists/3pls/">3PL companies</a>
+                        </div>
+                    </div>
+                    <a href="https://warehouse.ninja/about/">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="pricing-hero">
+            <h1>Simple, transparent <span style="color: #00509d;">pricing</span></h1>
+            <p class="subtitle">Yearly access to the most comprehensive database of last-mile delivery contractors. Cancel anytime.</p>
+        </div>
+
+        <div class="pricing-table-wrapper">
+            <stripe-pricing-table
+                pricing-table-id="prctbl_1TflwlDLM6mICBq7sxxbDnXa"
+                publishable-key="pk_live_51POhzvDLM6mICBq7UeJwYzdaCLEAgDX7Z0IaoUk2yhY6W6aPphBYEbBGwiYIwoEehthkWDrGRcy9dKSq4ALTYj3j00HofEWQiI">
+            </stripe-pricing-table>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-nav">
+            <a href="https://warehouse.ninja/about/">About</a>
+            <a href="https://warehouse.ninja/articles/">Articles</a>
+            <a href="https://warehouse.ninja/">Home</a>
+            <a href="https://warehouse.ninja/pricing/">Pricing</a>
+            <a href="https://warehouse.ninja/privacy-policy/">Privacy Policy</a>
+            <a href="https://warehouse.ninja/refund-policy/">Refund Policy</a>
+            <a href="https://warehouse.ninja/terms-of-service/">Terms of Service</a>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2026 WarehouseNinja, LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+(function(){function u(){document.body.classList.toggle('scrolled',window.scrollY>50)}window.addEventListener('scroll',u,{passive:!0});u()})();
+</script>
+</body>
+</html>
