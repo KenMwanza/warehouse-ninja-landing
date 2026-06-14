@@ -395,6 +395,185 @@
         font-size: 0.85rem;
         color: #999;
     }
+
+    /* Email digest section */
+    .email-digest-section {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        margin-top: 4rem;
+        padding: 0 2rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .email-digest-text {
+        flex: 1;
+        min-width: 0;
+    }
+    .email-digest-text h3 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #111;
+        line-height: 1.3;
+        margin: 0;
+    }
+    .email-digest-mockup {
+        flex: 1;
+        min-width: 380px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .gmail-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: #f2f6fc;
+        border-bottom: 1px solid #e8eaed;
+        font-size: 13px;
+        font-weight: 500;
+        color: #5f6368;
+    }
+    .gmail-header .gmail-logo {
+        width: 24px;
+        height: 24px;
+        background: #ea4335;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .gmail-header .gmail-logo span {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+    }
+    .gmail-body {
+        display: flex;
+        min-height: 160px;
+    }
+    .gmail-sidebar {
+        width: 100px;
+        flex-shrink: 0;
+        background: #fafafa;
+        border-right: 1px solid #e8eaed;
+        padding: 4px 0;
+    }
+    .gmail-sidebar-item {
+        padding: 3px 10px;
+        font-size: 11px;
+        color: #5f6368;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .gmail-sidebar-item.active {
+        background: #e8f0fe;
+        color: #1a73e8;
+        font-weight: 700;
+        border-radius: 0 16px 16px 0;
+        margin-right: 6px;
+    }
+    .gmail-sidebar-item .count {
+        margin-left: auto;
+        font-size: 10px;
+        font-weight: 600;
+    }
+    .gmail-sidebar-item.active .count {
+        color: #1a73e8;
+    }
+    .gmail-inbox {
+        flex: 1;
+        min-width: 0;
+    }
+    .gmail-tabs {
+        display: flex;
+        border-bottom: 1px solid #e8eaed;
+        font-size: 11px;
+    }
+    .gmail-tab {
+        padding: 6px 12px;
+        color: #5f6368;
+        cursor: default;
+    }
+    .gmail-tab.active {
+        color: #1a73e8;
+        border-bottom: 2px solid #1a73e8;
+        font-weight: 600;
+    }
+    .gmail-email-list {
+        padding: 0;
+    }
+    .gmail-email {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-bottom: 1px solid #f1f3f4;
+        font-size: 10px;
+        cursor: default;
+    }
+    .gmail-email.highlight {
+        background: #f2f6fc;
+    }
+    .gmail-email .star {
+        color: #f9ab00;
+        font-size: 12px;
+        width: 14px;
+        flex-shrink: 0;
+    }
+    .gmail-email .sender {
+        width: 60px;
+        flex-shrink: 0;
+        font-weight: 600;
+        color: #202124;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .gmail-email .subject-line {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #202124;
+    }
+    .gmail-email .subject-line .subject-bold {
+        font-weight: 600;
+    }
+    .gmail-email .subject-line .snippet {
+        color: #5f6368;
+        font-weight: 400;
+    }
+    .gmail-email .time {
+        font-size: 9px;
+        color: #5f6368;
+        flex-shrink: 0;
+        min-width: 40px;
+        text-align: right;
+    }
+    @media (max-width: 768px) {
+        .email-digest-section {
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+        .email-digest-mockup {
+            min-width: 0;
+            width: 100%;
+        }
+        .email-digest-text h3 {
+            font-size: 1.3rem;
+            text-align: center;
+        }
+    }
 </style>
 
 <header id="site-header">
@@ -478,6 +657,59 @@
             <img src="https://warehouse.ninja/wp-content/uploads/2026/06/doordash-logo.svg" alt="DoorDash" class="platform-logo" style="max-width:140px">
             <img src="https://warehouse.ninja/wp-content/uploads/2026/06/dhl-logo.png" alt="DHL" class="platform-logo">
             <img src="https://warehouse.ninja/wp-content/uploads/2026/06/usps-logo.png" alt="USPS" class="platform-logo">
+        </div>
+    </div>
+
+    <div class="email-digest-section">
+        <div class="email-digest-text">
+            <h3>Digest of newly added last-mile delivery companies in your inbox every day</h3>
+        </div>
+        <div class="email-digest-mockup">
+            <div class="gmail-header">
+                <div class="gmail-logo"><span>M</span></div>
+                Gmail
+            </div>
+            <div class="gmail-body">
+                <div class="gmail-sidebar">
+                    <div class="gmail-sidebar-item active">
+                        <span>&#9993;</span> Inbox
+                        <span class="count">2</span>
+                    </div>
+                    <div class="gmail-sidebar-item"><span>&#9737;</span> Starred</div>
+                    <div class="gmail-sidebar-item"><span>&#9998;</span> Sent</div>
+                    <div class="gmail-sidebar-item"><span>&#128193;</span> Drafts</div>
+                </div>
+                <div class="gmail-inbox">
+                    <div class="gmail-tabs">
+                        <div class="gmail-tab active">Primary</div>
+                        <div class="gmail-tab">Promotions</div>
+                        <div class="gmail-tab">Social</div>
+                    </div>
+                    <div class="gmail-email-list">
+                        <div class="gmail-email highlight">
+                            <span class="star">&#9733;</span>
+                            <span class="sender">reports</span>
+                            <span class="subject-line">
+                                <span class="subject-bold">New Additions to the Delivery Contractor Database</span>
+                                <span class="snippet"> &mdash; 2 new delivery contractors added in Phoenix and Portland</span>
+                            </span>
+                            <span class="time">7:05 AM</span>
+                        </div>
+                        <div class="gmail-email">
+                            <span class="star" style="color:#ddd;">&#9733;</span>
+                            <span class="sender">Amazon</span>
+                            <span class="subject-line">Your delivery update &mdash; <span class="snippet">DAZ5 route changes this week</span></span>
+                            <span class="time">6:48 AM</span>
+                        </div>
+                        <div class="gmail-email">
+                            <span class="star" style="color:#ddd;">&#9733;</span>
+                            <span class="sender">FedEx</span>
+                            <span class="subject-line">Weekly contractor digest &mdash; <span class="snippet">Compliance updates for your region</span></span>
+                            <span class="time">Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>
