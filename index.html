@@ -306,6 +306,30 @@
         padding: 3rem 0 0;
     }
 
+    .made-for-line {
+        text-align: center;
+        font-size: 2.25rem;
+        color: #000;
+        margin-bottom: 2rem;
+        font-weight: 700;
+    }
+    .made-for-label {
+        margin-right: 0.5rem;
+    }
+    .made-for-swap {
+        color: #00509d;
+        font-weight: 700;
+        display: inline-block;
+        width: 22rem;
+        text-align: left;
+        text-transform: lowercase;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .made-for-swap.fade-out {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
     .cards-grid {
         display: flex;
         flex-direction: column;
@@ -992,6 +1016,7 @@
 </header>
 
 <main class="container">
+    <div class="made-for-line"><span class="made-for-label">Made for</span><span class="made-for-swap" id="made-for-text">insurance agents</span></div>
     <div class="cards-grid">
         <div class="card">
             <h3>Contact intelligence</h3>
@@ -1188,6 +1213,29 @@
 <script>
 (function(){function u(){document.body.classList.toggle('scrolled',window.scrollY>50)}window.addEventListener('scroll',u,{passive:!0});u()})();
 document.querySelector('.hamburger').addEventListener('click',function(){document.querySelector('.header-nav').classList.toggle('open')});
+
+(function(){
+    var el = document.getElementById('made-for-text');
+    if (!el) return;
+    var terms = [
+        'Insurance agents',
+        'Logistics consultants',
+        'Staffing agencies',
+        'Fleet managers',
+        'Recruiters',
+        'Risk analysts',
+        'Compliance officers',
+        'Last-mile operators'
+    ];
+    var i = 1, t = setInterval(function(){
+        el.classList.add('fade-out');
+        setTimeout(function(){
+            el.textContent = terms[i];
+            el.classList.remove('fade-out');
+            i = (i + 1) % terms.length;
+        }, 300);
+    }, 2500);
+})();
 </script>
 
 </html>
