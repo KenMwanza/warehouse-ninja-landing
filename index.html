@@ -221,15 +221,26 @@
     }
 
     .btn-icon-eyes {
-        display: none;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .btn-icon-no-eyes {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
     }
 
-    .cta-btn:hover .btn-icon-no-eyes {
-        display: none;
+    @keyframes blink {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
     }
-
     .cta-btn:hover .btn-icon-eyes {
-        display: inline;
+        animation: blink 0.3s ease-in-out 1;
+    }
+    .cta-btn:hover .btn-icon-no-eyes {
+        animation: blink 0.3s ease-in-out 1 reverse;
     }
 
     header {
@@ -275,6 +286,7 @@
         border-radius: 50%;
         background: #fff;
         flex-shrink: 0;
+        position: relative;
     }
 
     .btn-icon {
@@ -407,6 +419,89 @@
         font-size: 1.2rem;
         color: #555;
         line-height: 1.6;
+    }
+    /* Split feature section */
+    .split-section {
+        display: flex;
+        gap: 3rem;
+        margin-top: 2.5rem;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+    }
+    .split-col:first-child {
+        position: relative;
+        background: url('captive-bg.jpg') center/cover no-repeat;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+    .split-col {
+        flex: 1;
+        min-width: 0;
+    }
+    .split-col:last-child {
+        background: url('forhire-bg.jpg') center/cover no-repeat;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+    .split-col h3, .split-col ul {
+        background: #fff;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+    }
+    .split-col h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 0.75rem;
+    }
+    .split-col h3 .em {
+        color: #00509d;
+    }
+    .split-col ul {
+        list-style: none;
+        padding: 0;
+        padding-left: 1.5rem;
+    }
+    .split-col ul li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.3rem 0;
+        font-size: 0.95rem;
+        color: #555;
+        line-height: 1.5;
+        text-align: left;
+        font-weight: 500;
+    }
+    .split-col ul li .bullet-icon {
+        flex-shrink: 0;
+        width: 0.85rem;
+        height: 0.85rem;
+        margin-top: 0.25rem;
+        object-fit: contain;
+    }
+    .split-divider {
+        width: 1px;
+        background: #e0e0e0;
+        flex-shrink: 0;
+    }
+    .split-tagline {
+        font-size: 0.85rem;
+        color: #888;
+        margin-top: 0.75rem;
+        font-style: italic;
+    }
+    @media (max-width: 700px) {
+        .split-section {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .split-divider {
+            width: 100%;
+            height: 1px;
+        }
     }
 
     .site-footer {
@@ -866,6 +961,26 @@
         <h1>Start <span style="color: #00509d;">Connecting</span> with Last-Mile Delivery Companies</h1>
         <p class="subtitle">Access the most comprehensive database of last-mile transportation contractors serving Amazon Logistics, FedEx Ground, USPS and more.</p>
         <a href="https://app.warehouse.ninja/" class="cta-btn"><span class="btn-icon-circle"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon.png" alt="" class="btn-icon btn-icon-eyes"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon-no-eyes.png" alt="" class="btn-icon btn-icon-no-eyes"></span> Start exploring</a>
+        <div class="split-section">
+            <div class="split-col">
+                <h3>Captive <span class="em">last-mile delivery</span> companies</h3>
+                <ul>
+                    <li>Amazon Delivery Service Partners (DSPs), Freight Partners, and Alternative Vehicle Program contractors</li>
+                    <li>FedEx Ground Pickup &amp; Delivery, Linehaul, and Custom Critical independent service providers</li>
+                    <li>USPS Highway Contract Routes (HCRs) and Contract Delivery Services (CDSs)</li>
+                    <li>DHL Express, DoorDash, DPD, and other captive last-mile delivery contractors</li>
+                </ul>
+            </div>
+            <div class="split-divider"></div>
+            <div class="split-col">
+                <h3>For-hire <span class="em">last-mile companies</span></h3>
+                <ul>
+                    <li>Last-mile trucking companies hauling appliances, furniture, pharmaceuticals, medical supplies and more</li>
+                    <li>Client companies include Home Depot, Costco, Lowe's, Wayfair and other major retailers</li>
+                    <li>Detailed fleet profiles including 26' box trucks, cargo vans, straight trucks, and sprinter vans</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </header>
 
