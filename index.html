@@ -237,10 +237,10 @@
         50% { opacity: 1; }
     }
     .cta-btn:hover .btn-icon-eyes {
-        animation: blink 0.3s ease-in-out 1;
+        animation: blink 0.2s ease-in-out 1;
     }
     .cta-btn:hover .btn-icon-no-eyes {
-        animation: blink 0.3s ease-in-out 1 reverse;
+        animation: blink 0.2s ease-in-out 1 reverse;
     }
 
     .cta-btn:hover {
@@ -373,6 +373,34 @@
         height: 1.2rem;
         margin-top: 0.3rem;
         object-fit: contain;
+    }
+
+    .scoreboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+    }
+    .score {
+        display: block;
+        border-left: 3px solid #e0e0e0;
+        border-bottom: 1px solid #f0f0f0;
+        border-right: 1px solid #e0e0e0;
+        padding: 1rem 1.1rem;
+        background: #fff;
+        transition: background 0.2s, border-left-color 0.2s;
+    }
+    .score:hover {
+        background: #f8f9fa;
+        border-left-color: #00509d;
+    }
+    .score__label {
+        color: #333;
+        font-size: 1rem;
+        line-height: 1.5;
+        font-weight: 500;
     }
 
     .faq-section {
@@ -991,7 +1019,7 @@
     <div class="container">
         <h1>Start <span style="color: #00509d;">Connecting</span> with Last-Mile Delivery Companies</h1>
         <p class="subtitle">Access the most comprehensive database of last-mile transportation contractors serving Amazon Logistics, FedEx Ground, USPS and more.</p>
-        <a href="https://app.warehouse.ninja/" class="cta-btn"><span class="btn-icon-circle"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon.png" alt="" class="btn-icon btn-icon-eyes"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon-no-eyes.png" alt="" class="btn-icon btn-icon-no-eyes"></span> Start exploring</a>
+        <a href="https://app.warehouse.ninja/" class="cta-btn"><span class="btn-icon-circle"><img src="favicon.png" alt="" class="btn-icon btn-icon-eyes"><img src="favicon-no-eyes.png" alt="" class="btn-icon btn-icon-no-eyes"></span> Start exploring</a>
         <div class="split-section">
             <div class="split-col">
                 <h3>Captive <span class="em">last-mile delivery</span> companies</h3>
@@ -1017,25 +1045,39 @@
 
 <main class="container">
     <div class="made-for-line"><span class="made-for-label">Made for</span><span class="made-for-swap" id="made-for-text">insurance agents</span></div>
-    <div class="cards-grid">
-        <div class="card">
-            <h3>Contact intelligence</h3>
-            <ul>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Email addresses, phone numbers and verified LinkedIn links of company owners and other key personnel</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Direct office contact information (email addresses and phone numbers) as well as office mailing address where available.</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Company website and social media (LinkedIn and Facebook) for expanded outreach and research opportunities</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Daily verification and updates of contact data to ensure accuracy</li>
-            </ul>
+    <div class="card" style="margin-bottom: 3rem;">
+        <h3>Contact intelligence</h3>
+        <div class="scoreboard">
+            <div class="score">
+                <div class="score__label">Email addresses, phone numbers and verified LinkedIn links of company owners and other key personnel</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Direct office contact information (email addresses and phone numbers) as well as office mailing address where available.</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Company website and social media (LinkedIn and Facebook) for expanded outreach and research opportunities</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Daily verification and updates of contact data to ensure accuracy</div>
+            </div>
         </div>
+    </div>
 
-        <div class="card">
-            <h3>Operational insights</h3>
-            <ul>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Fleet size and driver headcount trends month over month</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Company assigned warehouses and service areas where available</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Carrier affiliations and contract status (active, inactive, etc.)</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Insurance policy records and statuses as well as safety and inspection history</li>
-            </ul>
+    <div class="card" style="margin-bottom: 3rem;">
+        <h3>Operational insights</h3>
+        <div class="scoreboard">
+            <div class="score">
+                <div class="score__label">Fleet size and driver headcount trends month over month</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Company assigned warehouses and service areas where available</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Carrier affiliations and contract status (active, inactive, etc.)</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Insurance policy records and statuses as well as safety and inspection history</div>
+            </div>
         </div>
     </div>
 
@@ -1166,7 +1208,7 @@
     </div>
 
     <div style="text-align: center; margin-top: 2rem;">
-        <a href="https://app.warehouse.ninja/" class="cta-btn"><span class="btn-icon-circle"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon.png" alt="" class="btn-icon btn-icon-eyes"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon-no-eyes.png" alt="" class="btn-icon btn-icon-no-eyes"></span> Start exploring</a>
+        <a href="https://app.warehouse.ninja/" class="cta-btn"><span class="btn-icon-circle"><img src="favicon.png" alt="" class="btn-icon btn-icon-eyes"><img src="favicon-no-eyes.png" alt="" class="btn-icon btn-icon-no-eyes"></span> Start exploring</a>
     </div>
 </main>
 
