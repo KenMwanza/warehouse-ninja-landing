@@ -221,15 +221,33 @@
     }
 
     .btn-icon-eyes {
-        display: none;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .btn-icon-no-eyes {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
     }
 
-    .cta-btn:hover .btn-icon-no-eyes {
-        display: none;
+    @keyframes blink {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
     }
-
     .cta-btn:hover .btn-icon-eyes {
-        display: inline;
+        animation: blink 0.2s ease-in-out 1;
+    }
+    .cta-btn:hover .btn-icon-no-eyes {
+        animation: blink 0.2s ease-in-out 1 reverse;
+    }
+
+    .cta-btn:hover {
+        filter: brightness(0.9);
+        box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.20),
+                    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+                    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
     }
 
     header {
@@ -275,6 +293,7 @@
         border-radius: 50%;
         background: #fff;
         flex-shrink: 0;
+        position: relative;
     }
 
     .btn-icon {
@@ -285,6 +304,30 @@
 
     main {
         padding: 3rem 0 0;
+    }
+
+    .made-for-line {
+        text-align: center;
+        font-size: 2.25rem;
+        color: #000;
+        margin-bottom: 2rem;
+        font-weight: 700;
+    }
+    .made-for-label {
+        margin-right: 0.5rem;
+    }
+    .made-for-swap {
+        color: #00509d;
+        font-weight: 700;
+        display: inline-block;
+        width: 22rem;
+        text-align: left;
+        text-transform: lowercase;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .made-for-swap.fade-out {
+        opacity: 0;
+        transform: translateY(-4px);
     }
 
     .cards-grid {
@@ -332,10 +375,38 @@
         object-fit: contain;
     }
 
+    .scoreboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+    }
+    .score {
+        display: block;
+        border-left: 3px solid #e0e0e0;
+        border-bottom: 1px solid #f0f0f0;
+        border-right: 1px solid #e0e0e0;
+        padding: 1rem 1.1rem;
+        background: #fff;
+        transition: background 0.2s, border-left-color 0.2s;
+    }
+    .score:hover {
+        background: #f8f9fa;
+        border-left-color: #00509d;
+    }
+    .score__label {
+        color: #333;
+        font-size: 1rem;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
     .faq-section {
         margin-top: 3rem;
         padding: 0 1rem;
-        max-width: 800px;
+        max-width: 1100px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -385,28 +456,191 @@
         filter: grayscale(0) contrast(1);
     }
 
-    .faq-section h2 {
-        font-size: 1.875rem;
+    .faq-heading {
+        text-align: center;
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 2rem;
         color: #111;
     }
 
-    .faq-item {
-        margin-bottom: 2rem;
+    .accordion-items {
+        list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
-    .faq-item h3 {
+    .accordion-item {
+        margin: 0;
+        padding: 0;
+    }
+
+    .accordion-divider {
+        height: 1px;
+        background: #d0d0d0;
+    }
+
+    .accordion-trigger {
+        box-sizing: border-box;
+        width: 100%;
+        background: transparent;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        font-family: inherit;
         font-size: 1.2rem;
         font-weight: 600;
-        margin-bottom: 0.5rem;
         color: #111;
+        padding: 1.2rem 0;
+        cursor: pointer;
+        -webkit-appearance: none;
     }
 
-    .faq-item p {
-        font-size: 1.2rem;
+    .accordion-trigger:focus-visible {
+        outline: 2px solid #00509d;
+        outline-offset: -2px;
+    }
+
+    .accordion-icon {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin-left: 1rem;
+    }
+
+    .accordion-icon-line {
+        display: block;
+        position: absolute;
+        background: #111;
+        transition: transform 0.25s;
+    }
+
+    .accordion-icon-line--h {
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        transform: translateY(-50%);
+    }
+
+    .accordion-icon-line--v {
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        transform: translateX(-50%) rotate(0deg);
+    }
+
+    .accordion-item.open .accordion-icon-line--v {
+        transform: translateX(-50%) rotate(90deg);
+    }
+
+    .accordion-panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s ease;
+    }
+
+    .accordion-item.open .accordion-panel {
+        grid-template-rows: 1fr;
+    }
+
+    .accordion-content {
+        overflow: hidden;
+    }
+
+    .accordion-content p {
+        margin: 0;
+        padding: 0 0 1.5rem;
         color: #555;
+        font-size: 1.2rem;
         line-height: 1.6;
+    }
+    /* Split feature section */
+    .split-section {
+        display: flex;
+        gap: 3rem;
+        margin-top: 2.5rem;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+    }
+    .split-col:first-child {
+        position: relative;
+        background: url('captive-bg.jpg') center/cover no-repeat;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+    .split-col {
+        flex: 1;
+        min-width: 0;
+    }
+    .split-col:last-child {
+        background: url('forhire-bg.jpg') center/cover no-repeat;
+        border-radius: 8px;
+        padding: 1.5rem;
+    }
+    .split-col h3, .split-col ul {
+        background: #fff;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+    }
+    .split-col h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 0.75rem;
+    }
+    .split-col h3 .em {
+        color: #00509d;
+    }
+    .split-col ul {
+        list-style: none;
+        padding: 0;
+        padding-left: 1.5rem;
+    }
+    .split-col ul li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.3rem 0;
+        font-size: 0.95rem;
+        color: #555;
+        line-height: 1.5;
+        text-align: left;
+        font-weight: 500;
+    }
+    .split-col ul li .bullet-icon {
+        flex-shrink: 0;
+        width: 0.85rem;
+        height: 0.85rem;
+        margin-top: 0.25rem;
+        object-fit: contain;
+    }
+    .split-divider {
+        width: 1px;
+        background: #e0e0e0;
+        flex-shrink: 0;
+    }
+    .split-tagline {
+        font-size: 0.85rem;
+        color: #888;
+        margin-top: 0.75rem;
+        font-style: italic;
+    }
+    @media (max-width: 700px) {
+        .split-section {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .split-divider {
+            width: 100%;
+            height: 1px;
+        }
     }
 
     .site-footer {
@@ -866,29 +1100,64 @@
         <h1>Start <span style="color: #00509d;">Connecting</span> with Last-Mile Delivery Companies</h1>
         <p class="subtitle">Access the most comprehensive database of last-mile transportation contractors serving Amazon Logistics, FedEx Ground, USPS and more.</p>
         <a href="https://app.warehouse.ninja/" class="cta-btn"><span class="btn-icon-circle"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon.png" alt="" class="btn-icon btn-icon-eyes"><img src="https://warehouse.ninja/wp-content/uploads/2026/06/favicon-no-eyes.png" alt="" class="btn-icon btn-icon-no-eyes"></span> Start exploring</a>
+        <div class="split-section">
+            <div class="split-col">
+                <h3>Captive <span class="em">last-mile delivery</span> companies</h3>
+                <ul>
+                    <li>Amazon Delivery Service Partners (DSPs), Freight Partners, and Alternative Vehicle Program contractors</li>
+                    <li>FedEx Ground Pickup &amp; Delivery, Linehaul, and Custom Critical independent service providers</li>
+                    <li>USPS Highway Contract Routes (HCRs) and Contract Delivery Services (CDSs)</li>
+                    <li>DHL Express, DoorDash, DPD, and other captive last-mile delivery contractors</li>
+                </ul>
+            </div>
+            <div class="split-divider"></div>
+            <div class="split-col">
+                <h3>For-hire <span class="em">last-mile companies</span></h3>
+                <ul>
+                    <li>Last-mile trucking companies hauling appliances, furniture, pharmaceuticals, medical supplies and more</li>
+                    <li>Client companies include Home Depot, Costco, Lowe's, Wayfair and other major retailers</li>
+                    <li>Detailed fleet profiles including 26' box trucks, cargo vans, straight trucks, and sprinter vans</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </header>
 
 <main class="container">
-    <div class="cards-grid">
-        <div class="card">
-            <h3>Contact intelligence</h3>
-            <ul>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Email addresses, phone numbers and verified LinkedIn links of company owners and other key personnel</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Direct office contact information (email addresses and phone numbers) as well as office mailing address where available.</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Company website and social media (LinkedIn and Facebook) for expanded outreach and research opportunities</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Daily verification and updates of contact data to ensure accuracy</li>
-            </ul>
+    <div class="made-for-line"><span class="made-for-label">Made for</span><span class="made-for-swap" id="made-for-text">insurance agents</span></div>
+    <div class="card" style="margin-bottom: 3rem;">
+        <h3>Contact intelligence</h3>
+        <div class="scoreboard">
+            <div class="score">
+                <div class="score__label">Email addresses, phone numbers and verified LinkedIn links of company owners and other key personnel</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Direct office contact information (email addresses and phone numbers) as well as office mailing address where available.</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Company website and social media (LinkedIn and Facebook) for expanded outreach and research opportunities</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Daily verification and updates of contact data to ensure accuracy</div>
+            </div>
         </div>
+    </div>
 
-        <div class="card">
-            <h3>Operational insights</h3>
-            <ul>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Fleet size and driver headcount trends month over month</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Company assigned warehouses and service areas where available</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Carrier affiliations and contract status (active, inactive, etc.)</li>
-                <li><img src="https://warehouse.ninja/wp-content/uploads/2026/06/bullet-icon.png" alt="" class="bullet-icon"> Insurance policy records and statuses as well as safety and inspection history</li>
-            </ul>
+    <div class="card" style="margin-bottom: 3rem;">
+        <h3>Operational insights</h3>
+        <div class="scoreboard">
+            <div class="score">
+                <div class="score__label">Fleet size and driver headcount trends month over month</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Company assigned warehouses and service areas where available</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Carrier affiliations and contract status (active, inactive, etc.)</div>
+            </div>
+            <div class="score">
+                <div class="score__label">Insurance policy records and statuses as well as safety and inspection history</div>
+            </div>
         </div>
     </div>
 
@@ -1025,27 +1294,85 @@
 
 <section class="faq-section">
     <div class="container">
-        <h2>Frequently asked questions</h2>
-        <div class="faq-item">
-            <h3>What data do you have?</h3>
-            <p>We have multiple data points of last-mile delivery companies: key contact info (emails, phone numbers and websites), physical addresses, mailing address, company owner names (with their roles, contacts such as emails, phone numbers, LinkedIn accounts), assigned warehouse locations, fleet size records, driver count records, insurance records and contractor type information.</p>
-        </div>
-        <div class="faq-item">
-            <h3>How often is your data updated?</h3>
-            <p>We update our database on a daily basis, with verification of key contact information. Our team continuously monitors contractor registrations, DOT filings, and business registrations to ensure accuracy.</p>
-        </div>
-        <div class="faq-item">
-            <h3>What sources do you use?</h3>
-            <p>We combine public records (DOT, SOS filings), proprietary research, industry partnerships, and direct verification. Our methodology includes cross-referencing multiple sources to ensure accuracy.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Can I export the data?</h3>
-            <p>Yes, all plans include CSV and Microsoft Excel export capabilities.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Can I cancel anytime?</h3>
-            <p>Yes. Cancel in one click. You keep access until the end of your billing period. No emails, no retention calls, no fees.</p>
-        </div>
+        <h3 class="faq-heading">Frequently asked questions</h3>
+        <ul class="accordion-items">
+            <li class="accordion-item">
+                <div class="accordion-divider" aria-hidden="true"></div>
+                <button class="accordion-trigger" aria-expanded="false">
+                    <span class="accordion-title">What data do you have?</span>
+                    <span class="accordion-icon" aria-hidden="true">
+                        <span class="accordion-icon-line accordion-icon-line--h"></span>
+                        <span class="accordion-icon-line accordion-icon-line--v"></span>
+                    </span>
+                </button>
+                <div class="accordion-panel">
+                    <div class="accordion-content">
+                        <p>We have multiple data points of last-mile delivery companies: key contact info (emails, phone numbers and websites), physical addresses, mailing address, company owner names (with their roles, contacts such as emails, phone numbers, LinkedIn accounts), assigned warehouse locations, fleet size records, driver count records, insurance records and contractor type information.</p>
+                    </div>
+                </div>
+                <div class="accordion-divider" aria-hidden="true"></div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">
+                    <span class="accordion-title">How often is your data updated?</span>
+                    <span class="accordion-icon" aria-hidden="true">
+                        <span class="accordion-icon-line accordion-icon-line--h"></span>
+                        <span class="accordion-icon-line accordion-icon-line--v"></span>
+                    </span>
+                </button>
+                <div class="accordion-panel">
+                    <div class="accordion-content">
+                        <p>We update our database on a daily basis, with verification of key contact information. Our team continuously monitors contractor registrations, DOT filings, and business registrations to ensure accuracy.</p>
+                    </div>
+                </div>
+                <div class="accordion-divider" aria-hidden="true"></div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">
+                    <span class="accordion-title">What sources do you use?</span>
+                    <span class="accordion-icon" aria-hidden="true">
+                        <span class="accordion-icon-line accordion-icon-line--h"></span>
+                        <span class="accordion-icon-line accordion-icon-line--v"></span>
+                    </span>
+                </button>
+                <div class="accordion-panel">
+                    <div class="accordion-content">
+                        <p>We combine public records (DOT, SOS filings), proprietary research, industry partnerships, and direct verification. Our methodology includes cross-referencing multiple sources to ensure accuracy.</p>
+                    </div>
+                </div>
+                <div class="accordion-divider" aria-hidden="true"></div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">
+                    <span class="accordion-title">Can I export the data?</span>
+                    <span class="accordion-icon" aria-hidden="true">
+                        <span class="accordion-icon-line accordion-icon-line--h"></span>
+                        <span class="accordion-icon-line accordion-icon-line--v"></span>
+                    </span>
+                </button>
+                <div class="accordion-panel">
+                    <div class="accordion-content">
+                        <p>Yes, all plans include CSV and Microsoft Excel export capabilities.</p>
+                    </div>
+                </div>
+                <div class="accordion-divider" aria-hidden="true"></div>
+            </li>
+            <li class="accordion-item">
+                <button class="accordion-trigger" aria-expanded="false">
+                    <span class="accordion-title">Can I cancel anytime?</span>
+                    <span class="accordion-icon" aria-hidden="true">
+                        <span class="accordion-icon-line accordion-icon-line--h"></span>
+                        <span class="accordion-icon-line accordion-icon-line--v"></span>
+                    </span>
+                </button>
+                <div class="accordion-panel">
+                    <div class="accordion-content">
+                        <p>Yes. Cancel in one click. You keep access until the end of your billing period. No emails, no retention calls, no fees.</p>
+                    </div>
+                </div>
+                <div class="accordion-divider" aria-hidden="true"></div>
+            </li>
+        </ul>
     </div>
 </section>
 
@@ -1070,6 +1397,47 @@
 <script>
 (function(){function u(){document.body.classList.toggle('scrolled',window.scrollY>50)}window.addEventListener('scroll',u,{passive:!0});u()})();
 document.querySelector('.hamburger').addEventListener('click',function(){document.querySelector('.header-nav').classList.toggle('open')});
+
+(function(){
+    var triggers = document.querySelectorAll('.accordion-trigger');
+    triggers.forEach(function(btn){
+        btn.addEventListener('click', function(){
+            var item = this.closest('.accordion-item');
+            var isOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.accordion-item').forEach(function(el){el.classList.remove('open')});
+            document.querySelectorAll('.accordion-trigger').forEach(function(el){el.setAttribute('aria-expanded','false')});
+            // Open clicked (unless it was already open)
+            if(!isOpen){
+                item.classList.add('open');
+                this.setAttribute('aria-expanded','true');
+            }
+        });
+    });
+})();
+
+(function(){
+    var el = document.getElementById('made-for-text');
+    if (!el) return;
+    var terms = [
+        'Insurance agents',
+        'Logistics consultants',
+        'Staffing agencies',
+        'fleet repair shops',
+        'Recruiters',
+        'Risk analysts',
+        'Compliance officers',
+        'Last-mile operators'
+    ];
+    var i = 1, t = setInterval(function(){
+        el.classList.add('fade-out');
+        setTimeout(function(){
+            el.textContent = terms[i];
+            el.classList.remove('fade-out');
+            i = (i + 1) % terms.length;
+        }, 300);
+    }, 2500);
+})();
 </script>
 
 </html>
